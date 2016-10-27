@@ -1,0 +1,10 @@
+.button-choose-chunk {
+	-fx-border-color: #4db6ac;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+}
+.button-download {
+	-fx-border-color: #4db6ac;
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px;
+}
