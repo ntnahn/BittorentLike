@@ -42,7 +42,7 @@ public class BroadcastListenner {
 					BTLPackage receiveBTLPackage = BTLCommon.deserializeBTLPackageBytes(btlPackage);
 					if (receiveBTLPackage != null) {
 						// Nếu nhận đc gói dữ liệu thì tiến hành kiểm tra nó là loại gì để xử lý
-						int packageType = receiveBTLPackage.getType();
+//						int packageType = receiveBTLPackage.getType();
 						
 						System.out.println("Server listen: " + new String(receiveBTLPackage.getOption()));
 						byte[] receiveBTLPackageData = receiveBTLPackage.getData();
