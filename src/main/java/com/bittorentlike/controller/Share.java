@@ -32,6 +32,8 @@ public class Share {
 		File path = fx.showOpenDialog(null);
 		if (path != null) {
 			this.txtFile.setText(path.getPath());
+//			InfoChunk chunk = InfoChunk.getInfoChunkByPath(path.getPath());
+//			System.out.println(chunk.getM_index() + "  " + chunk.getM_FileName() + "  " + chunk.getM_HashValue() + "  " + chunk.getPath());
 		}
 	}
 

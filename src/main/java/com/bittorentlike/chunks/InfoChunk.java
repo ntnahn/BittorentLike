@@ -1,5 +1,13 @@
 package com.bittorentlike.chunks;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import com.bittorentlike.controller.Share;
+
 public class InfoChunk {
     private int m_index;
     private String m_FileName;
@@ -69,5 +77,58 @@ public class InfoChunk {
 		this.path = path;
 	}
     
+    public static InfoChunk getInfoChunkByPath(String path){
+    	BufferedReader br = null;
+    	InfoChunk chunk = null;
+    	try {
+    		FileReader fileChunk = new FileReader(path);
+        	br = new BufferedReader(fileChunk);
+    	    String line = br.readLine();
+
+    	    if (line != null) {
+    	    	//get chunk
+    	    	chunk = new InfoChunk();
+    	    	String[] contents = line.split(Share.specitor);
+    	    	chunk.setM_index(Integer.parseInt(contents[0].trim()));
+    	    	chunk.setM_FileName(contents[1]);
+    	    	chunk.setM_HashValue(contents[2]);
+    	    	chunk.setPath(contents[3]);
+    	    }
+    	    br.close();
+    	} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	return chunk;
+    }
     
+    public static ArrayList<InfoChunk> getInfoChunkListByPath(String path){
+    	BufferedReader br = null;
+    	ArrayList<InfoChunk> infoChunks = new ArrayList<>();
+    	try {
+    		FileReader fileChunk = new FileReader(path);
+        	br = new BufferedReader(fileChunk);
+    	    String line = br.readLine();
+
+    	    while (line != null) {
+    	    	InfoChunk chunk = new InfoChunk();
+    	    	//get chunk
+    	    	chunk = new InfoChunk();
+    	    	String[] contents = line.split(Share.specitor);
+    	    	chunk.setM_index(Integer.parseInt(contents[0].trim()));
+    	    	chunk.setM_FileName(contents[1]);
+    	    	chunk.setM_HashValue(contents[2]);
+    	    	chunk.setPath(contents[3]);
+    	    	infoChunks.add(chunk);
+    	        line = br.readLine();
+    	    }
+    	    br.close();
+    	} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    	return infoChunks;
+    }
 }
