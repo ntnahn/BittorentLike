@@ -27,7 +27,7 @@
          <children>
             <AnchorPane prefHeight="35.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <JFXButton onAction="#onButtonDownloadClick" styleClass="button-download" text="Download" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                  <JFXButton onAction="#onButtonShareClick" styleClass="button-download" text="Share" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="70%" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="10.0" />
                   <ProgressBar prefWidth="200.0" progress="0.7" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="8.0" />
                </children>

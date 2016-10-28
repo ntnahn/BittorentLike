@@ -2,9 +2,6 @@ package com.bittorentlike.controller;
 
 import java.io.IOException;
 
-import com.qlbh.controller.ManHinhChinhController;
-
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
