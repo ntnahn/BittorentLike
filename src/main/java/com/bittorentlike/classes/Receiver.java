@@ -23,7 +23,7 @@ public class Receiver {
 			int off = 0;
 			FileOutputStream fos = new FileOutputStream(new File("D:\\testReceiver001.chunk"));
 			while (true) {
-				ds.setSoTimeout(5000);
+				ds.setSoTimeout(1000);
 
 				try {
 					receiveData = new byte[1024];
@@ -43,7 +43,7 @@ public class Receiver {
 			System.out.println("UDP Port 4567 is occupied.");
 			System.exit(1);
 		} finally {
-			ds.close();
+//			ds.close();
 		}
 	}
 	
@@ -73,7 +73,7 @@ public class Receiver {
         }
 
         try {
-            out = new FileOutputStream("D:\\testSenderFunction.chunk");
+            out = new FileOutputStream("D:\\testReceiver001.chunk");
         } catch (FileNotFoundException ex) {
             System.out.println("File not found. ");
         }
@@ -90,4 +90,31 @@ public class Receiver {
         socket.close();
         serverSocket.close();
 	}
+	
+	public static void server() throws IOException {
+        ServerSocket ss = new ServerSocket(3434);
+        Socket socket = ss.accept();
+        InputStream in = new FileInputStream("D:\\testSenderFunction.chunk");
+        OutputStream out = socket.getOutputStream();
+        copy(in, out);
+        out.close();
+        in.close();
+    }
+
+    public static void client() throws IOException {
+        Socket socket = new Socket("localhost", 3434);
+        InputStream in = socket.getInputStream();
+        OutputStream out = new FileOutputStream("D:\\testReceiver001.chunk");
+        copy(in, out);
+        out.close();
+        in.close();
+    }
+
+    static void copy(InputStream in, OutputStream out) throws IOException {
+        byte[] buf = new byte[8192];
+        int len = 0;
+        while ((len = in.read(buf)) != -1) {
+            out.write(buf, 0, len);
+        }
+    }
 }

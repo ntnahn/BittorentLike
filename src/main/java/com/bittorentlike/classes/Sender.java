@@ -46,7 +46,7 @@ public class Sender {
 		} catch (FileNotFoundException ex) {
 			System.out.println("File not found :P");
 		} finally {
-			ds.close();
+//			ds.close();
 		}
 	}
 	
