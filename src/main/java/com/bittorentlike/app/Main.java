@@ -3,7 +3,9 @@ package com.bittorentlike.app;
 import java.io.IOException;
 
 import com.bittorentlike.broadcast.BroadcastListenner;
+import com.bittorentlike.classes.BTLPackage;
 import com.bittorentlike.common.BTLConstant;
+import com.bittorentlike.udp.SenderThread;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -47,6 +49,12 @@ public class Main extends Application {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void newSenderThread(BTLPackage receiveBTLPackage) {
+		SenderThread sendThread = new SenderThread(receiveBTLPackage);
+//		senderThreads.add(sendThread);
+		sendThread.start();
 	}
 	
 	public static void main(String[] args) {

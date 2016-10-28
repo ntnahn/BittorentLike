@@ -7,6 +7,7 @@ import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import com.bittorentlike.app.Main;
 import com.bittorentlike.chunks.InfoChunk;
 import com.bittorentlike.classes.BTLPackage;
 import com.bittorentlike.common.AppStaticVariable;
@@ -23,7 +24,7 @@ public class BroadcastListenner {
 	// Use to when broadcast, if it send to it self, then ignore
 	public String serverID;
 	// Lưu các thread
-	private ArrayList<SenderThread> senderThreads;
+	private ArrayList<SenderThread> senderThreads = new ArrayList<>();
 
 	public BroadcastListenner(int port) {
 		this.port = port;
@@ -114,9 +115,7 @@ public class BroadcastListenner {
 				// một luồng xử lý để tiến hành gửi file cho máy client
 				case BTLConstant.TYPE_ACCEPT_RECEIVE:
 					// Create thread send file here
-					SenderThread sendThread = new SenderThread(receiveBTLPackage);
-					senderThreads.add(sendThread);
-					sendThread.start();
+					Main.newSenderThread(receiveBTLPackage);
 					Download.downloadController.addStatus("Server listen: TYPE_ACCEPT_RECEIVE");
 					break;
 			}

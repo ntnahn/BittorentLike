@@ -89,6 +89,7 @@ public class Download {
 			BTLPackage btlPackage = new BTLPackage(Main.broadCastListenner.serverID, data);
 			btlPackage.setType(BTLConstant.TYPE_BROADCAST);
 			sender.sendData(BTLConstant.SEND_PORT, BTLConstant.IP_ADDRESS, btlPackage);
+			sender.close();
 		} else {
 			txtWarning.setText("Đường dẫn đến file chunk không đúng.");
 		}
