@@ -14,12 +14,12 @@ public class SplitFile {
 			FileInputStream f = new FileInputStream(file);
 			int remainLength = (int) file.length();
 			int offset = 0;
-			while (remainLength >= BTLConstant.MAX_PACKET_SIZE) {
-				byte[] b = new byte[BTLConstant.MAX_PACKET_SIZE];
-				f.read(b, 0, BTLConstant.MAX_PACKET_SIZE);
+			while (remainLength >= BTLConstant.BUFFER_SIZE) {
+				byte[] b = new byte[BTLConstant.BUFFER_SIZE];
+				f.read(b, 0, BTLConstant.BUFFER_SIZE);
 				listBytes.add(b);
-				remainLength = remainLength - BTLConstant.MAX_PACKET_SIZE;
-				offset += BTLConstant.MAX_PACKET_SIZE;
+				remainLength = remainLength - BTLConstant.BUFFER_SIZE;
+				offset += BTLConstant.BUFFER_SIZE;
 			}
 
 			if (remainLength > 0) {

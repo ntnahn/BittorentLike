@@ -51,12 +51,6 @@ public class Main extends Application {
 		}
 	}
 	
-	public static void newSenderThread(BTLPackage receiveBTLPackage) {
-		SenderThread sendThread = new SenderThread(receiveBTLPackage);
-//		senderThreads.add(sendThread);
-		sendThread.start();
-	}
-	
 	public static void main(String[] args) {
 		launch(args);
 	}

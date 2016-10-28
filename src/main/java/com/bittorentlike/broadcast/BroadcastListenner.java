@@ -7,12 +7,12 @@ import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import com.bittorentlike.app.Main;
 import com.bittorentlike.chunks.InfoChunk;
 import com.bittorentlike.classes.BTLPackage;
 import com.bittorentlike.common.AppStaticVariable;
 import com.bittorentlike.common.BTLCommon;
 import com.bittorentlike.common.BTLConstant;
+import com.bittorentlike.common.CombineFile;
 import com.bittorentlike.controller.Download;
 import com.bittorentlike.udp.Sender;
 import com.bittorentlike.udp.SenderThread;
@@ -23,6 +23,9 @@ public class BroadcastListenner {
 	DatagramSocket ds;
 	// Use to when broadcast, if it send to it self, then ignore
 	public String serverID;
+	// Lưu các phần của file
+	private CombineFile fileParts = new CombineFile();
+	
 	// Lưu các thread
 	private ArrayList<SenderThread> senderThreads = new ArrayList<>();
 
@@ -115,7 +118,9 @@ public class BroadcastListenner {
 				// một luồng xử lý để tiến hành gửi file cho máy client
 				case BTLConstant.TYPE_ACCEPT_RECEIVE:
 					// Create thread send file here
-					Main.newSenderThread(receiveBTLPackage);
+					SenderThread sendThread = new SenderThread(receiveBTLPackage);
+//					senderThreads.add(sendThread);
+					sendThread.start();
 					Download.downloadController.addStatus("Server listen: TYPE_ACCEPT_RECEIVE");
 					break;
 			}
@@ -160,10 +165,25 @@ public class BroadcastListenner {
 						}
 					}
 					break;
+				// Nhận thông báo bên server gửi đã gửi xong
+				// Tiến hành tổng hợp file
+				case BTLConstant.TYPE_BEGIN_SEND_CHUNK:
+					fileParts = new CombineFile();
+					Download.downloadController.addStatus("Client listen: receive server begin send chunk file");
+					break;
 				// Nhận file từ server
 				case BTLConstant.TYPE_CHUNK:
-					Download.downloadController.addStatus("Client listen: receive server chunk file");
+					fileParts.addPart(receiveBTLPackageData);
+					Download.downloadController.addStatus("Client listen: receive server send chunk file");
 					break;
+				// Nhận thông báo bên server gửi đã gửi xong
+				// Tiến hành tổng hợp file
+				case BTLConstant.TYPE_END_SEND_CHUNK:
+					AppStaticVariable.isDownloading = false;
+					fileParts.doCreateFile("");
+					Download.downloadController.addStatus("Client listen: receive server sent chunk file");
+					break;
+					
 			}
 		}
 	}

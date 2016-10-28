@@ -23,16 +23,24 @@ public class SenderThread extends Thread {
 				System.out.println("Read file chunk: " + infoChunk.getPath());
 				ArrayList<byte[]> fileData = SplitFile.getByteListFromPath(infoChunk.getPath());
 				System.out.println("File split lenght: " + fileData.size());
+				
+				BTLPackage btlPackage = new BTLPackage(Main.broadCastListenner.serverID, null);
+				btlPackage.setType(BTLConstant.TYPE_BEGIN_SEND_CHUNK);
+				sender.sendData(BTLConstant.LISTEN_PORT, BTLConstant.IP_ADDRESS, btlPackage);
 				for ( byte[] subData : fileData ) {
 					try {
-						Thread.sleep(100);
+						Thread.sleep(10);
 						System.out.println("Send file-----");
-						BTLPackage btlPackage = new BTLPackage(Main.broadCastListenner.serverID, subData);
+						btlPackage = new BTLPackage(Main.broadCastListenner.serverID, subData);
 						btlPackage.setType(BTLConstant.TYPE_CHUNK);
 						sender.sendData(BTLConstant.LISTEN_PORT, BTLConstant.IP_ADDRESS, btlPackage);
 					} catch (InterruptedException ex) {
 					}
 				}
+				btlPackage = new BTLPackage(Main.broadCastListenner.serverID, null);
+				btlPackage.setType(BTLConstant.TYPE_END_SEND_CHUNK);
+				sender.sendData(BTLConstant.LISTEN_PORT, BTLConstant.IP_ADDRESS, btlPackage);
+				
 				sender.close();
 			}
 		}
