@@ -32,6 +32,7 @@ public class Download {
 		ChunkTest chunkTest = new ChunkTest("abc.chunk", "D:\\TKB HK3.png");
 		byte[] data = BTLCommon.serializeObject(chunkTest);
 		BTLPackage btlPackage = new BTLPackage("Hi", data);
+		btlPackage.setType(BTLConstant.TYPE_BROADCAST);
 		broadcastSender.doBroadcast(btlPackage);
 	}
 }

@@ -3,7 +3,7 @@ package com.bittorentlike.classes;
 import java.io.Serializable;
 
 public class BTLPackage implements Serializable {
-    private byte[] type;
+    private byte type;
     private byte[] unuse;
     private byte[] headerLength;
     private byte[] packageLength;
@@ -13,7 +13,7 @@ public class BTLPackage implements Serializable {
     private String option;
     private byte[] data;
 
-    public BTLPackage(byte[] type, byte[] unuse, byte[] headerLength, byte[] packageLength, byte[] checksum, byte[] sequenceNumber, byte[] acknowledgeNumber, String option, byte[] data ) {
+    public BTLPackage(byte type, byte[] unuse, byte[] headerLength, byte[] packageLength, byte[] checksum, byte[] sequenceNumber, byte[] acknowledgeNumber, String option, byte[] data ) {
         this.type = type;
         this.unuse = unuse;
         this.headerLength = headerLength;
@@ -27,7 +27,7 @@ public class BTLPackage implements Serializable {
     }
     
     public BTLPackage(String option, byte[] data){
-        this.type = new byte[1];
+        this.type = 0;
         this.unuse = new byte[1];
         this.headerLength = new byte[2];
         this.packageLength = new byte[2];
@@ -102,11 +102,11 @@ public class BTLPackage implements Serializable {
         this.sequenceNumber = sequenceNumber;
     }
 
-    public byte[] getType() {
+    public byte getType() {
         return type;
     }
 
-    public void setType(byte[] type) {
+    public void setType(byte type) {
         this.type = type;
     }
 }
