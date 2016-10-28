@@ -3,8 +3,7 @@ package com.bittorentlike.controller;
 import java.io.File;
 import java.io.IOException;
 
-import com.bittorentlike.classes.Receiver;
-import com.bittorentlike.classes.Sender;
+import com.bittorentlike.classes.Server;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,36 +14,20 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class Download {
 	@FXML
 	private TextField txtFilePath;
+	final Server server = new Server();
 	@FXML
 	void onButtonDownloadClick(ActionEvent event) {
 		System.out.println("Hello, we will download this file");
-//		Receiver receiver = new Receiver();
-//		Sender sender = new Sender();
-//		try {
-////			receiver.listen();
-//			sender.sendViaSocket();
-//			receiver.listenViaSocket();
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//			System.out.println("Listen failed!");
-//		}
-		new Thread() {
-            public void run() {
-                try {
-                	Receiver.server();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }.start();
-
-        try {
-			Receiver.client();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		new Thread(new Runnable() {
+			public void run() {
+				try {
+					server.start();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}).start();
 	}
 	@FXML
 	void onButtonChooseChunkClick(ActionEvent event) {
@@ -54,5 +37,11 @@ public class Download {
 		if (path != null) {
 			this.txtFilePath.setText(path.getPath());
 		}
+	}
+	
+	public void onClose() {
+		// Stop listen when application close to free port
+		server.stop();
+		System.out.println("Main screen close");
 	}
 }
