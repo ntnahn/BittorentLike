@@ -109,14 +109,4 @@ public class BTLPackage implements Serializable {
     public void setType(byte[] type) {
         this.type = type;
     }
-    
-//    public byte[] getByte() {
-//    	int packageLenght = type.length + unuse.length + headerLength.length + packageLength.length
-//    			+ checksum.length + sequenceNumber.length + acknowledgeNumber.length
-//    			+ option.getBytes().length + data.length;
-//    	
-//    	byte[] packageData = new byte[packageLenght];
-//    	
-//    	return null;
-//    }
 }

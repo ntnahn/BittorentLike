@@ -7,12 +7,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.time.temporal.ChronoUnit;
-
-import com.bittorentlike.broadcast.BroadcastSender;
-import com.bittorentlike.chunks.InfoChunk;
-import com.bittorentlike.classes.BTLPackage;
-import com.bittorentlike.common.BTLConstant;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -87,9 +81,5 @@ public class Share {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	public void onClose() {
-
 	}
 }

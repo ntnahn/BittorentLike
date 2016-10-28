@@ -1,9 +1,12 @@
 package com.bittorentlike.controller;
 
 import java.io.File;
-import java.io.IOException;
 
-import com.bittorentlike.classes.Server;
+import com.bittorentlike.broadcast.BroadcastSender;
+import com.bittorentlike.classes.BTLPackage;
+import com.bittorentlike.common.BTLCommon;
+import com.bittorentlike.common.BTLConstant;
+import com.bittorentlike.common.ChunkTest;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,21 +17,6 @@ import javafx.stage.FileChooser.ExtensionFilter;
 public class Download {
 	@FXML
 	private TextField txtFilePath;
-	final Server server = new Server();
-	@FXML
-	void onButtonDownloadClick(ActionEvent event) {
-		System.out.println("Hello, we will download this file");
-		new Thread(new Runnable() {
-			public void run() {
-				try {
-					server.start();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}).start();
-	}
 	@FXML
 	void onButtonChooseChunkClick(ActionEvent event) {
 		FileChooser fx = new FileChooser();
@@ -38,10 +26,12 @@ public class Download {
 			this.txtFilePath.setText(path.getPath());
 		}
 	}
-	
-	public void onClose() {
-		// Stop listen when application close to free port
-		server.stop();
-		System.out.println("Main screen close");
+	@FXML
+	void onButtonDownloadClick(ActionEvent event) {
+		BroadcastSender broadcastSender = new BroadcastSender(BTLConstant.SEND_PORT);
+		ChunkTest chunkTest = new ChunkTest("abc.chunk", "D:\\TKB HK3.png");
+		byte[] data = BTLCommon.serializeObject(chunkTest);
+		BTLPackage btlPackage = new BTLPackage("Hi", data);
+		broadcastSender.doBroadcast(btlPackage);
 	}
 }
