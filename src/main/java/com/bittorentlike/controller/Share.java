@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.bittorentlike.common.BTLCommon;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -48,6 +50,10 @@ public class Share {
 
 	@FXML
 	void btnCreateOnClick(ActionEvent event) {
+		if (BTLCommon.isEmpty(this.txtPath.getText()) || BTLCommon.isEmpty(this.txtFile.getText())) {
+			System.out.println("You do not choose file path or file");
+			return;
+		}
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA1");
 			String sourceFile = txtFile.getText();
@@ -74,6 +80,7 @@ public class Share {
      			bw.write(content);
      			bw.close();
 			}
+			inputStream.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

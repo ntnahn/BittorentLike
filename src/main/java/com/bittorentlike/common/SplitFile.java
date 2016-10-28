@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class SplitFile {
-	public static final int size = 1024;
-
 	public static ArrayList<byte[]> getByteListFromPath(String path) {
 		ArrayList<byte[]> listBytes = new ArrayList<>();
 		try {
@@ -16,19 +14,20 @@ public class SplitFile {
 			FileInputStream f = new FileInputStream(file);
 			int remainLength = (int) file.length();
 			int offset = 0;
-			while (remainLength >= size) {
-				byte[] b = new byte[size];
-				f.read(b, offset, size);
+			while (remainLength >= BTLConstant.MAX_PACKET_SIZE) {
+				byte[] b = new byte[BTLConstant.MAX_PACKET_SIZE];
+				f.read(b, 0, BTLConstant.MAX_PACKET_SIZE);
 				listBytes.add(b);
-				remainLength = remainLength - size;
-				offset += size;
+				remainLength = remainLength - BTLConstant.MAX_PACKET_SIZE;
+				offset += BTLConstant.MAX_PACKET_SIZE;
 			}
 
 			if (remainLength > 0) {
 				byte[] b = new byte[remainLength];
-				f.read(b, offset, remainLength);
+				f.read(b, 0, remainLength);
 				listBytes.add(b);
 			}
+			f.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

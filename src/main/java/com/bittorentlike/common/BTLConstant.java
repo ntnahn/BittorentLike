@@ -9,6 +9,8 @@ public class BTLConstant {
 	public static final byte TYPE_BROADCAST = 1;
 	// Gửi khi máy này có file chunk mà máy kia yêu cầu
 	public static final byte TYPE_HAVE_CHUNK = 2;
+	// Đồng ý nhận file từ máy nào đó
+	public static final byte TYPE_ACCEPT_RECEIVE = 3;
 	// Khi gửi thông tin từng file đã chia nhỏ của file cần tải
-	public static final byte TYPE_CHUNK = 3;
+	public static final byte TYPE_CHUNK = 4;
 }

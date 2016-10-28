@@ -17,22 +17,15 @@ import javafx.stage.WindowEvent;
 
 
 public class Main extends Application {
+	public static BroadcastListenner broadCastListenner;
 	@Override
 	public void start(Stage primaryStage) {
 		Parent root;
-		Scene scene;
-		BroadcastListenner broadCastListenner = new BroadcastListenner(BTLConstant.LISTEN_PORT);
-		new Thread(new Runnable() {
-			public void run() {
-				broadCastListenner.start();
-			}
-		}).start();
-		
+		Scene scene;		
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/MainScreen.fxml"));
 			root = loader.load();
 			scene = new Scene(root);
-//			MainScreen mainScreenController = loader.<MainScreen>getController();
 			primaryStage.setTitle("Bittorent Like TNT");
 			primaryStage.initStyle(StageStyle.UNIFIED);
 			primaryStage.setScene(scene);
@@ -43,6 +36,13 @@ public class Main extends Application {
 					broadCastListenner.stop();
 				}
 			});
+			
+			broadCastListenner = new BroadcastListenner(BTLConstant.LISTEN_PORT);
+			new Thread(new Runnable() {
+				public void run() {
+					broadCastListenner.start();
+				}
+			}).start();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

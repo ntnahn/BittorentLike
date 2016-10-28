@@ -7,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import com.bittorentlike.chunks.InfoChunk;
 import com.bittorentlike.classes.BTLPackage;
 
 public class BTLCommon {
@@ -21,13 +22,13 @@ public class BTLCommon {
 			return null;
 		}
     }
-	public static ChunkTest deserializeChunkTestBytes(byte[] bytes) {
+	public static InfoChunk deserializeChunkTestBytes(byte[] bytes) {
 		try {
 			ByteArrayInputStream bytesIn = new ByteArrayInputStream(bytes);
 	        ObjectInputStream ois = new ObjectInputStream(bytesIn);
 	        Object obj = ois.readObject();
 	        ois.close();
-	        return (ChunkTest) obj;
+	        return (InfoChunk) obj;
 		} catch(Exception ex) {
 			return null;
 		}
@@ -59,4 +60,11 @@ public class BTLCommon {
     		return false;
     	}
     }
+    
+    public static boolean isEmpty(String value) {
+		if ( value == null || value.trim().isEmpty() ) {
+			return true;
+		}
+		return false;
+	}
 }

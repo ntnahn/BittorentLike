@@ -3,7 +3,11 @@ package com.bittorentlike.classes;
 import java.io.Serializable;
 
 public class BTLPackage implements Serializable {
-    private byte type;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private byte type;
     private byte[] unuse;
     private byte[] headerLength;
     private byte[] packageLength;

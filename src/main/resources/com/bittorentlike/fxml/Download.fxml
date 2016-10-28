@@ -12,24 +12,54 @@
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXButton alignment="CENTER" onAction="#onButtonChooseChunkClick" ripplerFill="#c98c8c" styleClass="button-choose-chunk" text="Choose chunk" textFill="#2012b9" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <JFXButton alignment="CENTER" graphicTextGap="8.0" onAction="#onButtonChooseChunkClick" prefHeight="30.0" prefWidth="150.0" ripplerFill="#c98c8c" styleClass="button-choose-chunk" text="Choose file chunk " textFill="#2012b9" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
                <graphic>
-                  <SVGPath content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="#2012b9" scaleX="0.8" scaleY="0.8" />
+                  <SVGPath content="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z" fill="#2012b9" />
                </graphic>
             </JFXButton>
-            <TextField fx:id="txtFilePath" layoutX="136.0" layoutY="7.0" prefHeight="30.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="4.0" />
+            <TextField fx:id="txtFilePath" layoutX="136.0" layoutY="7.0" prefHeight="30.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+      <AnchorPane prefHeight="35.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+         <children>
+            <JFXButton alignment="CENTER" onAction="#onButtonChooseFolderClick" prefWidth="150.0" ripplerFill="#c98c8c" styleClass="button-choose-chunk" text="Choose folder save" textFill="#2012b9" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <SVGPath content="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z" fill="#2012b9" scaleX="0.9" />
+               </graphic>
+            </JFXButton>
+            <TextField fx:id="txtPath" layoutX="136.0" layoutY="7.0" prefHeight="30.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="4.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
          <children>
             <AnchorPane prefHeight="35.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <JFXButton onAction="#onButtonDownloadClick" styleClass="button-download" text="Download" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="70%" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="10.0" />
-                  <ProgressBar prefWidth="200.0" progress="0.7" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="8.0" />
+                  <JFXButton onAction="#onButtonDownloadClick" styleClass="button-download" text="Download" textFill="#2012b9" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></JFXButton>
+                  <Text fx:id="txtPercent" strokeType="OUTSIDE" strokeWidth="0.0" text="70%" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="10.0" />
+                  <ProgressBar fx:id="progressBarDownload" prefWidth="200.0" progress="0.7" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="8.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+               <children>
+                  <Text fx:id="txtWarning" fill="#da2323" strokeType="OUTSIDE" strokeWidth="0.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="4.0">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+               <children>
+                  <TextArea fx:id="txtStatus" editable="false" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </children>

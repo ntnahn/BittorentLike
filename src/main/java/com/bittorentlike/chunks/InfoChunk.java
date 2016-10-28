@@ -4,12 +4,17 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.bittorentlike.controller.Share;
 
-public class InfoChunk {
-    private int m_index;
+public class InfoChunk implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int m_index;
     private String m_FileName;
     private String m_HashValue;
     private String path;
@@ -34,9 +39,16 @@ public class InfoChunk {
     }
     
     public InfoChunk(int index,String fileName, String hashValue){
+    	this.m_index = index;
+    	this.m_FileName = fileName;
+    	this.m_HashValue = hashValue;
+    }
+    
+    public InfoChunk(int index,String fileName, String hashValue, String path){
         this.m_index = index;
         this.m_FileName = fileName;
         this.m_HashValue = hashValue;
+        this.path = path;
     }
     
     public InfoChunk(String chunkInfo){
