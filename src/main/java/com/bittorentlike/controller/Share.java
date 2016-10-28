@@ -7,8 +7,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.temporal.ChronoUnit;
 
 import com.bittorentlike.broadcast.BroadcastSender;
+import com.bittorentlike.chunks.InfoChunk;
 import com.bittorentlike.classes.BTLPackage;
 import com.bittorentlike.common.BTLConstant;
 
@@ -36,6 +38,8 @@ public class Share {
 		File path = fx.showOpenDialog(null);
 		if (path != null) {
 			this.txtFile.setText(path.getPath());
+//			InfoChunk chunk = InfoChunk.getInfoChunkByPath(path.getPath());
+//			System.out.println(chunk.getM_index() + "  " + chunk.getM_FileName() + "  " + chunk.getM_HashValue() + "  " + chunk.getPath());
 		}
 	}
 
