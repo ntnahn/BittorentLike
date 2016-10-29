@@ -44,8 +44,6 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></JFXButton>
-                  <Text fx:id="txtPercent" strokeType="OUTSIDE" strokeWidth="0.0" text="70%" AnchorPane.leftAnchor="120.0" AnchorPane.topAnchor="10.0" />
-                  <ProgressBar fx:id="progressBarDownload" prefWidth="200.0" progress="0.7" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="8.0" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="25.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">

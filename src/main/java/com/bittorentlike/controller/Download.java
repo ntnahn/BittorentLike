@@ -25,14 +25,16 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class Download {
 	public static Download downloadController;
+	public static String filePath = "D:\\";
 	@FXML
 	private TextField txtFilePath, txtPath;
 	@FXML
-	private Text txtPercent, txtWarning;
+	private Text txtWarning;
+//	private Text txtPercent, txtWarning;
 	@FXML
 	private TextArea txtStatus;
-	@FXML
-	private ProgressBar progressBarDownload;
+//	@FXML
+//	private ProgressBar progressBarDownload;
 //	private ArrayList<String> status = new ArrayList<>();
 	@FXML
 	void initialize() {
@@ -63,6 +65,7 @@ public class Download {
 		fx.setTitle("Chọn đường dẫn để lưu file tải xuống");
 		File path = fx.showDialog(null);
 		if (path != null) {
+			Download.filePath = path.getPath();
 			this.txtPath.setText(path.getPath());
 		}
 	}

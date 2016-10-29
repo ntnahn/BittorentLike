@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
+import com.bittorentlike.controller.Download;
+
 public class CombineFile {
 	ArrayList<byte[]> fileSplit = new ArrayList<>();
 	
@@ -13,7 +15,7 @@ public class CombineFile {
 	
 	public void doCreateFile(String filePath) {
         try {
-        	FileOutputStream fos = new FileOutputStream(new File("D:\\def.mp3"));
+        	FileOutputStream fos = new FileOutputStream(new File(Download.filePath + "download.mp3"));
             for ( byte[] part : fileSplit ) {
                 fos.write(part, 0, part.length);
             }       
