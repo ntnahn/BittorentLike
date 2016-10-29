@@ -22,7 +22,7 @@ public class Sender {
         try {
             InetAddress ipServer = InetAddress.getByName(ipAddress);
             byte[] sendData = BTLCommon.serializeObject(pack);
-            DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, ipServer, port);
+            DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, InetAddress.getLocalHost(), port);
             socket.send(sendPacket);
             return true;
         } catch (Exception e) {
