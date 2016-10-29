@@ -82,11 +82,11 @@ public class BroadcastListenner {
 			// Kiểm tra xem gói tin nhận đc có phải do chính mình gửi hay ko
 			// Tại vì broadcast cũng gửi cho chính nó
 			// Kiểm tra ở đây tránh trường hợp tự gửi tự nhận
-//			if ( receiveBTLPackage.getOption().equals(this.serverID) ) {
-//				Download.downloadController.addStatus("Server listen: serverID receive " + receiveBTLPackage.getOption());
-//				Download.downloadController.addStatus("Server listen: serverID local   " + this.serverID);
-//				return;
-//			}
+			if ( receiveBTLPackage.getOption().equals(this.serverID) ) {
+				Download.downloadController.addStatus("Server listen: serverID receive " + receiveBTLPackage.getOption());
+				Download.downloadController.addStatus("Server listen: serverID local   " + this.serverID);
+				return;
+			}
 			// Nếu nhận đc gói dữ liệu thì tiến hành kiểm tra nó là loại gì để xử lý
 			byte packageType = receiveBTLPackage.getType();
 			byte[] receiveBTLPackageData = receiveBTLPackage.getData();
@@ -137,11 +137,11 @@ public class BroadcastListenner {
 			// Kiểm tra xem gói tin nhận đc có phải do chính mình gửi hay ko
 			// Tại vì broadcast cũng gửi cho chính nó
 			// Kiểm tra ở đây tránh trường hợp tự gửi tự nhận
-//					if ( receiveBTLPackage.getOption().equals(this.serverID) ) {
-//						Download.downloadController.addStatus("Server listen: serverID receive " + receiveBTLPackage.getOption());
-//						Download.downloadController.addStatus("Server listen: serverID local   " + this.serverID);
-//						return;
-//					}
+			if ( receiveBTLPackage.getOption().equals(this.serverID) ) {
+				Download.downloadController.addStatus("Server listen: serverID receive " + receiveBTLPackage.getOption());
+				Download.downloadController.addStatus("Server listen: serverID local   " + this.serverID);
+				return;
+			}
 			// Nếu nhận đc gói dữ liệu thì tiến hành kiểm tra nó là loại gì để xử lý
 			byte packageType = receiveBTLPackage.getType();
 			byte[] receiveBTLPackageData = receiveBTLPackage.getData();
